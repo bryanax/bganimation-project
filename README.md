@@ -1,1 +1,1 @@
-# smash-cs2-animation-project
+\# smash-cs2-animation-project

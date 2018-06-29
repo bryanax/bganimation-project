@@ -16,13 +16,13 @@ function setup() {
   ballX = width / 2;
   ballY = height / 2;
   ballRadius = 50;
-  ballXVelocity = 10;
+  ballXVelocity = 20;
   ballGrowth = 10;
 }
 
 
 function draw() {
-  background(0, 255, 0);
+  background(239, 215, 95);
   //drawSquares(random(30, 60)); // Uncomment this line for some fun!
   drawBall();
 }
@@ -32,13 +32,13 @@ function drawBall() {
     ballXVelocity *= -1;
   }
   var circumference = getCircumference(); // local variable
-  if(circumference >= 600 || circumference <= 160) {
+  if(circumference >= 1000 || circumference <= 160) {
     ballGrowth *= -1;
   }
   ballX += ballXVelocity;
   //ballRadius += ballGrowth; // Uncomment this line for a "pulsing" effect!
   var ballDiameter = ballRadius * 2; // local variable
-  fill("orange");
+  fill("yellow");
   ellipse(ballX, ballY, ballDiameter, ballDiameter);
 }
 
