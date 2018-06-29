@@ -1,62 +1,52 @@
 // Global Variables
 var p5Canvas;
 var myName;
-var ballX;
-var ballY;
-var ballRadius;
-var ballXVelocity;
-var ballGrowth;
-var y = 100;
 
 
 function setup() {
- p5Canvas = createCanvas(800, 600);
+ p5Canvas = createCanvas(700, 500, WEBGL);
  p5Canvas.parent("#p5-canvas");
  myName = select("#my-name");
  myName.html("Bryana");
- ballX = width / 2;
- ballY = height / 2;
- ballRadius = 50;
- ballXVelocity = 20;
- ballGrowth = 10;
- stroke(255);
- frameRate(30);
+ stroke(250);
+ frameRate(90);
 }
+
 
 function draw() {
- background(0, 0, 0)
- drawSquares(random(30, 60));
- drawBall();  
-}
-function drawBall() {
- if(ballX >= width - ballRadius || ballX <= 0 + ballRadius) {
-   ballXVelocity *= -1;
- }
- 
- var circumference = getCircumference(); // local variable
- if(circumference >= 1000 || circumference <= 160) {
-   ballGrowth *= -1;
- }
- ballX += ballXVelocity;
- ballRadius += ballGrowth; 
- var ballDiameter = ballRadius * 2; // local variable
- fill(255,255,255);
- ellipse(ballX, ballY, ballDiameter, ballDiameter);
+  background(0);
+
+  var locX = mouseX - height / 2;
+  var locY = mouseY - width / 2;
+
+  ambientLight(10);
+  directionalLight(255, 0, 0, 0.25, 0.25, 0);
+  pointLight(0, 0, 255, locX, locY, 250);
+
+  push();
+  translate(-width / 4, 0, 0);
+  rotateZ(frameCount * 0.02);
+  rotateX(frameCount * 0.02);
+  specularMaterial(300);
+  box(150, 150, 150);
+  pop();
+
+  translate(width / 4, 0, 0);
+  ambientMaterial(250);
+  sphere(125, 60);
+  drawSquares(random(100,200));
 }
 
-function getCircumference() {
- return 2 * PI * ballRadius;
-}
 
 function drawSquares(num) {
  while(num > 0) {
    var randomX = random(width); 
    var randomY = random(height); 
    var randomLength = random(20, 80);
-   var randomRed = random(255); 
-   var randomGreen = random(255);
-   var randomBlue = random(255);
-   fill(randomRed, randomGreen, randomBlue);
+   var randomRed = random(200); 
+   var randomGreen = random(200);
+   var randomBlue = random(200);
+   fill(100, 100, 100);
    rect(randomX, randomY, randomLength, randomLength);
    num--;
  }
@@ -70,7 +60,7 @@ function drawSquaresAlt(num) {
    var randomRed = random(255); 
    var randomGreen = random(255);
    var randomBlue = random(255);
-   fill(randomRed, randomGreen, randomBlue);
+   fill(200, 200, 200);
    rect (randomX, randomY, randomLength, randomLength);
  }
 }
